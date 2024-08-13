@@ -1,17 +1,19 @@
+import 'braid-design-system/reset'; // <-- Must be first
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import { createRoot } from 'react-dom/client';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { BraidProvider } from 'braid-design-system';
+import apac from 'braid-design-system/themes/apac';
+import { StoryProvider } from './context/StoryContext';
+import './App.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const container = document.getElementById('root');
+const root = createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BraidProvider theme={apac}>
+    <StoryProvider>
+      <App />
+    </StoryProvider>
+  </BraidProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
